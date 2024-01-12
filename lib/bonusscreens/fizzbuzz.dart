@@ -25,7 +25,8 @@ class _FizzBuzzState extends State<FizzBuzz> {
         backgroundColor: Colors.blue,
         title: const Text(
           'FizzBuzz',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: const Center(

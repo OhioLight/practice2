@@ -25,7 +25,8 @@ class _QuadratmusterState extends State<Quadratmuster> {
         backgroundColor: Colors.blue,
         title: const Text(
           'Quadratmuster',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: const Center(

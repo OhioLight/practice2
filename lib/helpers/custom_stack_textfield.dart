@@ -72,10 +72,12 @@ class CustomStackTextField extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         TextFormField(
+          scrollController: ScrollController(),
+          cursorColor: Colors.blue,
           onTap: onTap,
           controller: controller,
           readOnly: readOnly ?? false,
-          textAlign: textAlign ?? TextAlign.center,
+          textAlign: textAlign ?? TextAlign.start,
           keyboardType: readOnly == null ? keyboardType : null,
           onChanged: onChange,
           style: TextStyle(fontSize: fontSize),

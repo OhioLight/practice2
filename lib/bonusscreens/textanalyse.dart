@@ -25,7 +25,8 @@ class _TextAnalyseState extends State<TextAnalyse> {
         backgroundColor: Colors.blue,
         title: const Text(
           'Text Analyse',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: const Center(

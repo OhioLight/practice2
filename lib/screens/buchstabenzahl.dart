@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/helpers/custom_stack_textfield.dart';
 
-class BuchstabemZahl extends StatefulWidget {
-  const BuchstabemZahl({super.key});
+class BuchstabenZahl extends StatefulWidget {
+  const BuchstabenZahl({super.key});
 
   @override
-  State<BuchstabemZahl> createState() => _BuchstabemZahlState();
+  State<BuchstabenZahl> createState() => _BuchstabenZahlState();
 }
 
-class _BuchstabemZahlState extends State<BuchstabemZahl> {
+class _BuchstabenZahlState extends State<BuchstabenZahl> {
+  final TextEditingController textController = TextEditingController();
+
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,36 +27,85 @@ class _BuchstabemZahlState extends State<BuchstabemZahl> {
         ),
         backgroundColor: Colors.blue,
         title: const Text(
-          'Buchstabenzahl',
-          style: TextStyle(color: Colors.white),
+          'Buchstaben Zahl',
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text(
+              'Aufgabe',
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(
+              width: 300,
+              child: Text(
+                'Schreibe eine App, die für eine Liste aus Zeichenketten zurückgibt, wie viele Zeichen jede der Zeichenketten hat. Der Rückgabewert soll jede Zeichenkette und die Anzahl der Zeichen darin enthalten. (Bsp: “David” -> 5, “Angi” -> 4 etc.)',
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const Divider(
+              color: Colors.blue,
+            ),
+            const SizedBox(
+              height: 50,
+            ),
             SizedBox(
-              width: 100,
+              width: 300,
               child: CustomStackTextField(
-                labelText: 'Erste Zahl',
+                controller: textController,
+                labelText: 'Text Eingeben',
                 borderRadius: 25,
                 backgroundColor: Colors.white,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            SizedBox(
-              width: 100,
-              child: CustomStackTextField(
-                labelText: 'Zweite Zahl',
-                borderRadius: 25,
-                backgroundColor: Colors.white,
+            ElevatedButton(
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+              onPressed: () async {
+                setState(() {
+                  isLoading = true;
+                });
+
+                await Future.delayed(const Duration(seconds: 3));
+                calculateStringLengths();
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              child: const Text(
+                'Ergebniss',
+                style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text('Länge der Einzelnen Texte:'),
+            if (resultStrings.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  children:
+                      resultStrings.map((result) => Text(result)).toList(),
+                ),
+              ),
           ],
         ),
       ),
     );
+  }
+
+  List<String> resultStrings = [];
+  void calculateStringLengths() {
+    String inputText = textController.text;
+    List<String> inputList = inputText.split(',');
+    resultStrings = inputList.map((str) => '$str -> ${str.length}').toList();
   }
 }

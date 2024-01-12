@@ -26,7 +26,10 @@ class MainApp extends StatelessWidget {
             backgroundColor: Colors.blue,
             title: const Text(
               'Practice',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24),
             ),
           ),
           body: const Home()),
@@ -45,6 +48,20 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const Text(
+              'Standart Aufgaben',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue),
+            ),
+            const Divider(
+              height: 0,
+              color: Colors.blue,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor: MaterialStatePropertyAll(Colors.blue)),
@@ -53,12 +70,23 @@ class Home extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Summe()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Summe',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Summe',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -76,12 +104,23 @@ class Home extends StatelessWidget {
                         builder: (context) => const Durchschnitt()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Durchschnitt',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Durchschnitt',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -99,12 +138,23 @@ class Home extends StatelessWidget {
                         builder: (context) => const Haeufigkeit()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Häufigekeit',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Häufigkeit',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -120,12 +170,23 @@ class Home extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const FindChar()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Buchstabe',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Buchstaben suche',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -143,12 +204,23 @@ class Home extends StatelessWidget {
                         builder: (context) => const Vorzeichen()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Vorzeichen',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Vorzeichen',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -166,12 +238,23 @@ class Home extends StatelessWidget {
                         builder: (context) => const Aufteilung()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Aufteilung',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Aufteilung',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -186,15 +269,26 @@ class Home extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const BuchstabemZahl()));
+                        builder: (context) => const BuchstabenZahl()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
+                width: 230,
                 child: Center(
-                  child: Text(
-                    'Buchstabenzahl',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Buchstaben Zahl',
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.check_circle_outline,
+                        color: Colors.white,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -202,45 +296,79 @@ class Home extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const TextAnalyse()));
-                },
-                child: const SizedBox(
-                  height: 50,
-                  width: 200,
-                  child: Center(
-                      child: Text(
-                    'Textanalyse',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  )),
-                )),
+            const Text(
+              'Bonus Aufgaben',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue),
+            ),
+            const Divider(
+              height: 0,
+              color: Colors.blue,
+            ),
             const SizedBox(
               height: 20,
             ),
             ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FizzBuzz()));
-                },
-                child: const SizedBox(
-                  height: 50,
-                  width: 200,
-                  child: Center(
-                      child: Text(
-                    'FizzBuzz',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  )),
-                )),
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const TextAnalyse()));
+              },
+              child: const SizedBox(
+                width: 230,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Textanalyse',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+              style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const FizzBuzz()));
+              },
+              child: const SizedBox(
+                width: 230,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'FizzBuzz',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+            ),
             const SizedBox(
               height: 20,
             ),
@@ -254,13 +382,22 @@ class Home extends StatelessWidget {
                         builder: (context) => const Quadratmuster()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
-                child: Center(
-                  child: Text(
-                    'Quadratmuster',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
+                width: 230,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Quadratmuster',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -275,13 +412,22 @@ class Home extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Summe()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
-                child: Center(
-                  child: Text(
-                    'Palindrom',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
+                width: 230,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Palindrom',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -296,13 +442,22 @@ class Home extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Klammern()));
               },
               child: const SizedBox(
-                height: 50,
-                width: 200,
-                child: Center(
-                  child: Text(
-                    'Klammern',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
+                width: 230,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Klammern',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Icon(
+                      Icons.check_circle_outline,
+                      color: Colors.grey,
+                    ),
+                  ],
                 ),
               ),
             ),

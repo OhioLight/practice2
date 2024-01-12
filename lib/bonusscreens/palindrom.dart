@@ -25,7 +25,8 @@ class _PalindromState extends State<Palindrom> {
         backgroundColor: Colors.blue,
         title: const Text(
           'Palindrom',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: const Center(

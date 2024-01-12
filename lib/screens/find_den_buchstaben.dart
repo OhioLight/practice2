@@ -62,6 +62,9 @@ class _FindCharState extends State<FindChar> {
             const Divider(
               color: Colors.blue,
             ),
+            const SizedBox(
+              height: 50,
+            ),
             SizedBox(
               width: 300,
               child: CustomStackTextField(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice2/helpers/custom_stack_textfield.dart';
+import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class Aufteilung extends StatefulWidget {
   const Aufteilung({super.key});

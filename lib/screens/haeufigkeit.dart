@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/functions/haeufigkeit.dart';
-import 'package:practice2/helpers/custom_stack_textfield.dart';
+import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class Haeufigkeit extends StatefulWidget {
   const Haeufigkeit({super.key});

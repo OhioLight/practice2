@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class Durchschnitt extends StatefulWidget {
@@ -22,13 +23,13 @@ class _DurchschnittState extends State<Durchschnitt> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Coloors.icon,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Coloors.primaryColor,
         title: const Text(
           'Durchschnitt',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Coloors.text),
         ),
       ),
       body: Center(
@@ -47,7 +48,7 @@ class _DurchschnittState extends State<Durchschnitt> {
               ),
             ),
             const Divider(
-              color: Colors.blue,
+              color: Coloors.primaryColor,
             ),
             const SizedBox(
               height: 50,
@@ -60,13 +61,14 @@ class _DurchschnittState extends State<Durchschnitt> {
                 hintText: 'Zahlen mit Kommatas trennen',
                 hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
                 setState(() {
                   isLoading = true;
@@ -80,13 +82,13 @@ class _DurchschnittState extends State<Durchschnitt> {
               },
               child: const Text(
                 'Ergebniss',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
-                color: Colors.blue,
+                color: Coloors.primaryColor,
               )
             else
               (const SizedBox(
@@ -99,9 +101,11 @@ class _DurchschnittState extends State<Durchschnitt> {
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.blue[50],
+                color: Coloors.lightBlue,
                 border: Border.all(
-                    style: BorderStyle.solid, color: Colors.blue, width: 3),
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Padding(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/functions/haeufigkeit.dart';
+import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class Haeufigkeit extends StatefulWidget {
@@ -25,14 +26,14 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Coloors.icon,
           ),
         ),
         backgroundColor: Colors.blue,
         title: const Text(
           'Häufigkeit',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+              color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: Center(
@@ -51,7 +52,7 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
               ),
             ),
             const Divider(
-              color: Colors.blue,
+              color: Coloors.primaryColor,
             ),
             const SizedBox(
               height: 50,
@@ -63,7 +64,7 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
                 labelText: 'Text Eingeben',
                 hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
@@ -77,13 +78,14 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
                 labelText: 'Welcher Buchstabe soll gezählt werden',
                 hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
                 String text = stringController.text;
                 String targetLetter = charController.text;
@@ -96,13 +98,13 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
               },
               child: const Text(
                 'Ergebnis',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
-                color: Colors.blue,
+                color: Coloors.primaryColor,
               )
             else
               (const SizedBox(
@@ -115,9 +117,11 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.blue[50],
+                color: Coloors.lightBlue,
                 border: Border.all(
-                    style: BorderStyle.solid, color: Colors.blue, width: 3),
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Padding(

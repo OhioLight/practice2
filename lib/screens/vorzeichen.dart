@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/util/colors.dart';
 
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
@@ -23,14 +24,14 @@ class _VorzeichenState extends State<Vorzeichen> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Coloors.white,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Coloors.primaryColor,
         title: const Text(
           'Vorzeichen',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+              color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: Center(
@@ -49,7 +50,7 @@ class _VorzeichenState extends State<Vorzeichen> {
               ),
             ),
             const Divider(
-              color: Colors.blue,
+              color: Coloors.primaryColor,
             ),
             const SizedBox(
               height: 50,
@@ -63,13 +64,13 @@ class _VorzeichenState extends State<Vorzeichen> {
                 labelText: 'Zahl Eingeben',
                 hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
-                color: Colors.blue,
+                color: Coloors.primaryColor,
               )
             else
               (const SizedBox(
@@ -92,7 +93,7 @@ class _VorzeichenState extends State<Vorzeichen> {
               },
               child: const Text(
                 'Check',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(

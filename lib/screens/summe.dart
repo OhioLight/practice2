@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class Summe extends StatefulWidget {
@@ -23,14 +24,14 @@ class _SummeState extends State<Summe> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Coloors.icon,
           ),
         ),
         backgroundColor: Colors.blue,
         title: const Text(
           'Summe',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+              color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: Center(
@@ -49,7 +50,7 @@ class _SummeState extends State<Summe> {
               ),
             ),
             const Divider(
-              color: Colors.blue,
+              color: Coloors.primaryColor,
             ),
             const SizedBox(
               height: 50,
@@ -60,7 +61,7 @@ class _SummeState extends State<Summe> {
                 controller: firstNumberController,
                 labelText: 'Erste Zahl',
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.text,
               ),
             ),
             const SizedBox(
@@ -72,13 +73,14 @@ class _SummeState extends State<Summe> {
                 controller: secondNumberController,
                 labelText: 'Zweite Zahl',
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
                 setState(() {
                   isLoading = true;
@@ -103,13 +105,13 @@ class _SummeState extends State<Summe> {
               },
               child: const Text(
                 'Ergebniss',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
-                color: Colors.blue,
+                color: Coloors.primaryColor,
               )
             else
               (const SizedBox(
@@ -122,9 +124,11 @@ class _SummeState extends State<Summe> {
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.blue[50],
+                color: Coloors.lightBlue,
                 border: Border.all(
-                    style: BorderStyle.solid, color: Colors.blue, width: 3),
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
                 borderRadius: BorderRadius.circular(25),
               ),
               child: Padding(

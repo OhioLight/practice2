@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class BuchstabenZahl extends StatefulWidget {
@@ -22,14 +23,14 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Coloors.icon,
           ),
         ),
         backgroundColor: Colors.blue,
         title: const Text(
           'Buchstaben Zahl',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+              color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: Center(
@@ -48,7 +49,7 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
               ),
             ),
             const Divider(
-              color: Colors.blue,
+              color: Coloors.primaryColor,
             ),
             const SizedBox(
               height: 50,
@@ -59,7 +60,7 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
                 controller: textController,
                 labelText: 'Text Eingeben',
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
@@ -67,7 +68,8 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
             ),
             ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
                 setState(() {
                   isLoading = true;
@@ -81,7 +83,7 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
               },
               child: const Text(
                 'Ergebniss',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(

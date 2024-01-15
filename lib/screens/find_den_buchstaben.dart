@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
 class FindChar extends StatefulWidget {
@@ -34,14 +35,14 @@ class _FindCharState extends State<FindChar> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Colors.white,
+            color: Coloors.icon,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Coloors.primaryColor,
         title: const Text(
           'Finde den Buchstaben',
           style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+              color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: Center(
@@ -60,7 +61,7 @@ class _FindCharState extends State<FindChar> {
               ),
             ),
             const Divider(
-              color: Colors.blue,
+              color: Coloors.primaryColor,
             ),
             const SizedBox(
               height: 50,
@@ -72,7 +73,7 @@ class _FindCharState extends State<FindChar> {
                 labelText: 'Text Eingeben',
                 hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
@@ -87,13 +88,14 @@ class _FindCharState extends State<FindChar> {
                 labelText: 'Welcher Buchstabe soll dabei sein',
                 hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
                 await Future.delayed(const Duration(seconds: 3));
                 isVorhanden = buchstabenEnthalten(
@@ -104,7 +106,7 @@ class _FindCharState extends State<FindChar> {
               },
               child: const Text(
                 'Ergebnis',
-                style: TextStyle(fontSize: 20, color: Colors.white),
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(height: 10),

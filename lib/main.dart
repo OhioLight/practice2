@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:practice2/home/home_page.dart';
+
+import 'package:practice2/mainscreen/mainscreen.dart';
+import 'package:practice2/util/colors.dart';
 
 void main() {
   runApp(const MainApp());
@@ -13,16 +15,16 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.blue,
+            backgroundColor: Coloors.primaryColor,
             title: const Text(
               'Practice',
               style: TextStyle(
-                  color: Colors.white,
+                  color: Coloors.text,
                   fontWeight: FontWeight.bold,
                   fontSize: 24),
             ),
           ),
-          body: const Home()),
+          body: const MainScreen()),
     );
   }
 }

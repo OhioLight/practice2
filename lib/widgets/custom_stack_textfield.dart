@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practice2/util/colors.dart';
 
 class CustomStackTextField extends StatelessWidget {
   const CustomStackTextField({
@@ -73,7 +74,7 @@ class CustomStackTextField extends StatelessWidget {
       children: [
         TextFormField(
           scrollController: ScrollController(),
-          cursorColor: Colors.blue,
+          cursorColor: Coloors.primaryColor,
           onTap: onTap,
           controller: controller,
           readOnly: readOnly ?? false,

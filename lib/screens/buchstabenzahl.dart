@@ -108,6 +108,9 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
   void calculateStringLengths() {
     String inputText = textController.text;
     List<String> inputList = inputText.split(',');
-    resultStrings = inputList.map((str) => '$str -> ${str.length}').toList();
+    resultStrings = inputList.map((str) {
+      String trimmedStr = str.trim().replaceAll(' ', '');
+      return '$trimmedStr -> ${trimmedStr.length}';
+    }).toList();
   }
 }

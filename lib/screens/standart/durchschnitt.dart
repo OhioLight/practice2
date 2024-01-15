@@ -10,8 +10,6 @@ class Durchschnitt extends StatefulWidget {
 }
 
 class _DurchschnittState extends State<Durchschnitt> {
-  final TextEditingController numbersController = TextEditingController();
-  double average = 0.0;
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -54,16 +52,15 @@ class _DurchschnittState extends State<Durchschnitt> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 300,
               child: CustomStackTextField(
-                controller: numbersController,
-                labelText: 'Zahlen Eingeben',
-                hintText: 'Zahlen mit Kommatas trennen',
-                hintFontSize: 10,
-                borderRadius: 25,
+                labelText: 'Hier Eingabe text ändern',
                 backgroundColor: Coloors.white,
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -75,14 +72,14 @@ class _DurchschnittState extends State<Durchschnitt> {
                   isLoading = true;
                 });
 
-                await Future.delayed(const Duration(seconds: 3));
-                calculateAverage();
+                // hier bitte funktion einfügen
+
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Ergebniss',
+                'Ergebnis',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
@@ -96,7 +93,7 @@ class _DurchschnittState extends State<Durchschnitt> {
                 height: 36,
               )),
             const SizedBox(height: 10),
-            const Text('Der Durchschnitt ist:'),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
             const SizedBox(
               height: 15,
             ),
@@ -109,12 +106,12 @@ class _DurchschnittState extends State<Durchschnitt> {
                     width: 3),
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  average.toStringAsFixed(2),
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             )
@@ -122,16 +119,5 @@ class _DurchschnittState extends State<Durchschnitt> {
         ),
       ),
     );
-  }
-
-  void calculateAverage() {
-    final String numbersText = numbersController.text;
-    final List<String> numbersStringList = numbersText.split(',');
-    final List<double> numbersList = numbersStringList
-        .map((numberString) => double.tryParse(numberString.trim()) ?? 0.0)
-        .toList();
-
-    double sum = numbersList.reduce((value, element) => value + element);
-    average = sum / numbersList.length;
   }
 }

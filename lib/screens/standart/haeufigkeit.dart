@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:practice2/functions/haeufigkeit.dart';
+
 import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
@@ -11,9 +11,6 @@ class Haeufigkeit extends StatefulWidget {
 }
 
 class _HaeufigkeitState extends State<Haeufigkeit> {
-  final TextEditingController stringController = TextEditingController();
-  final TextEditingController charController = TextEditingController();
-  int haeufigkeit = 0;
   bool isLoading = false;
 
   @override
@@ -65,29 +62,17 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 300,
+
+              //wenn mehr als ein CustomStackTextField einfach die sizedBox mit dem textfield kopieren
               child: CustomStackTextField(
-                controller: stringController,
-                labelText: 'Text Eingeben',
-                hintFontSize: 10,
-                borderRadius: 25,
+                labelText: 'Hier Eingabe text ändern',
                 backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            SizedBox(
-              width: 60,
-              child: CustomStackTextField(
-                positionFromLeft: -125,
-                controller: charController,
-                labelText: 'Welcher Buchstabe soll gezählt werden',
-                hintFontSize: 10,
-                borderRadius: 25,
-                backgroundColor: Coloors.white,
-              ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -98,10 +83,8 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
                 setState(() {
                   isLoading = true;
                 });
-                String text = stringController.text;
-                String targetLetter = charController.text;
-                await Future.delayed(const Duration(seconds: 3));
-                haeufigkeit = buchstabenZaehler(text, targetLetter);
+
+                // hier bitte funktion einfügen
 
                 setState(() {
                   isLoading = false;
@@ -122,7 +105,7 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
                 height: 36,
               )),
             const SizedBox(height: 10),
-            const Text('Die Anzahl des Buchstabens'),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
             const SizedBox(
               height: 15,
             ),
@@ -135,12 +118,12 @@ class _HaeufigkeitState extends State<Haeufigkeit> {
                     width: 3),
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  '$haeufigkeit',
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             )

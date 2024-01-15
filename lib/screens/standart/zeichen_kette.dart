@@ -11,8 +11,6 @@ class ZeichenKette extends StatefulWidget {
 }
 
 class _ZeichenKetteState extends State<ZeichenKette> {
-  final TextEditingController numberController = TextEditingController();
-  String result = '';
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -57,16 +55,37 @@ class _ZeichenKetteState extends State<ZeichenKette> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
-              width: 150,
+            const SizedBox(
+              width: 300,
+
+              //wenn mehr als ein CustomStackTextField einfach die sizedBox mit dem textfield kopieren
               child: CustomStackTextField(
-                textAlign: TextAlign.center,
-                positionFromLeft: 10,
-                controller: numberController,
-                labelText: 'Zahl Eingeben',
-                hintFontSize: 10,
-                borderRadius: 25,
+                labelText: 'Hier Eingabe text ändern',
                 backgroundColor: Coloors.white,
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              style: const ButtonStyle(
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
+              onPressed: () async {
+                setState(() {
+                  isLoading = true;
+                });
+
+                // hier bitte funktion einfügen
+
+                setState(() {
+                  isLoading = false;
+                });
+              },
+              child: const Text(
+                'Ergebnis',
+                style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(height: 10),
@@ -79,53 +98,31 @@ class _ZeichenKetteState extends State<ZeichenKette> {
                 height: 36,
               )),
             const SizedBox(height: 10),
-            ElevatedButton(
-              style: const ButtonStyle(
-                  backgroundColor:
-                      MaterialStatePropertyAll(Coloors.primaryColor)),
-              onPressed: () async {
-                setState(() {
-                  isLoading = true;
-                });
-                await Future.delayed(const Duration(seconds: 3));
-                checkNumber();
-
-                setState(() {
-                  isLoading = false;
-                });
-              },
-              child: const Text(
-                'Check',
-                style: TextStyle(fontSize: 20, color: Coloors.text),
-              ),
-            ),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
             const SizedBox(
-              height: 10,
+              height: 15,
             ),
-            Text(
-              result,
-              style: const TextStyle(fontSize: 20),
+            Container(
+              decoration: BoxDecoration(
+                color: Coloors.lightBlue,
+                border: Border.all(
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
             )
           ],
         ),
       ),
     );
-  }
-
-  void checkNumber() {
-    setState(() {
-      try {
-        int number = int.parse(numberController.text);
-        if (number > 0) {
-          result = 'Positive';
-        } else if (number < 0) {
-          result = 'Negative';
-        } else {
-          result = 'Zero';
-        }
-      } catch (e) {
-        result = 'Ungültige Eingabe';
-      }
-    });
   }
 }

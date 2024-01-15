@@ -10,8 +10,6 @@ class BuchstabenZahl extends StatefulWidget {
 }
 
 class _BuchstabenZahlState extends State<BuchstabenZahl> {
-  final TextEditingController textController = TextEditingController();
-
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -55,18 +53,17 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 300,
               child: CustomStackTextField(
-                controller: textController,
-                labelText: 'Text Eingeben',
-                borderRadius: 25,
+                labelText: 'Hier Eingabe text ändern',
                 backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
               height: 20,
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor:
@@ -76,48 +73,52 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
                   isLoading = true;
                 });
 
-                await Future.delayed(const Duration(seconds: 3));
-                calculateStringLengths();
+                // hier bitte funktion einfügen
+
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Ergebniss',
+                'Ergebnis',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
+            const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
                 color: Coloors.primaryColor,
               )
             else
-              (const SizedBox(height: 36)),
+              (const SizedBox(
+                height: 36,
+              )),
+            const SizedBox(height: 10),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
-            const Text('Länge der Einzelnen Texte:'),
-            if (resultStrings.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  children:
-                      resultStrings.map((result) => Text(result)).toList(),
+            Container(
+              decoration: BoxDecoration(
+                color: Coloors.lightBlue,
+                border: Border.all(
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
+            )
           ],
         ),
       ),
     );
-  }
-
-  List<String> resultStrings = [];
-  void calculateStringLengths() {
-    String inputText = textController.text;
-    List<String> inputList = inputText.split(',');
-    resultStrings = inputList.map((str) {
-      String trimmedStr = str.trim().replaceAll(' ', '');
-      return '$trimmedStr -> ${trimmedStr.length}';
-    }).toList();
   }
 }

@@ -11,8 +11,6 @@ class SecondsForm extends StatefulWidget {
 }
 
 class _SecondsFormState extends State<SecondsForm> {
-  final TextEditingController stringController = TextEditingController();
-  int count = 0;
   bool isLoading = false;
 
   @override
@@ -66,13 +64,10 @@ Beispiel: 12345 -> 3 Stunden, 25 Minuten, 45 Sekunden''',
               const SizedBox(
                 height: 50,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 300,
                 child: CustomStackTextField(
-                  controller: stringController,
-                  labelText: 'Text Eingeben',
-                  hintFontSize: 10,
-                  borderRadius: 25,
+                  labelText: 'Hier Eingabe text ändern',
                   backgroundColor: Coloors.white,
                 ),
               ),
@@ -88,20 +83,8 @@ Beispiel: 12345 -> 3 Stunden, 25 Minuten, 45 Sekunden''',
                   setState(() {
                     isLoading = true;
                   });
-                  String text = stringController.text;
-                  List<String> targetLetters = ['a', 'e', 'i', 'u', 'o'];
 
-                  int vowelCount(String text, List<String> targetLetters) {
-                    for (int i = 0; i < text.length; i++) {
-                      if (targetLetters.contains(text[i].toLowerCase())) {
-                        count++;
-                      }
-                    }
-                    return count;
-                  }
-
-                  await Future.delayed(const Duration(seconds: 3));
-                  count = vowelCount(text, targetLetters);
+                  // hier bitte funktion einfügen
 
                   setState(() {
                     isLoading = false;
@@ -122,7 +105,7 @@ Beispiel: 12345 -> 3 Stunden, 25 Minuten, 45 Sekunden''',
                   height: 36,
                 )),
               const SizedBox(height: 10),
-              const Text('Die Anzahl der Vokale'),
+              const Text('hier trägst du ein was du ausgegeben bekommst'),
               const SizedBox(
                 height: 15,
               ),
@@ -135,12 +118,12 @@ Beispiel: 12345 -> 3 Stunden, 25 Minuten, 45 Sekunden''',
                       width: 3),
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
-                    '$count',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                    //hier die lösung eintragen
+                    '',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               )

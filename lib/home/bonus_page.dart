@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:practice2/bonusscreens/fizzbuzz.dart';
-import 'package:practice2/bonusscreens/klammern.dart';
-import 'package:practice2/bonusscreens/quadratmuster.dart';
-import 'package:practice2/bonusscreens/textanalyse.dart';
-import 'package:practice2/screens/summe.dart';
+import 'package:practice2/screens/bonus/anagram.dart';
+import 'package:practice2/screens/bonus/fizzbuzz.dart';
+import 'package:practice2/screens/bonus/klammern.dart';
+import 'package:practice2/screens/bonus/multiplication_advanced.dart';
+import 'package:practice2/screens/bonus/palindrom.dart';
+import 'package:practice2/screens/bonus/prime_checker.dart';
+import 'package:practice2/screens/bonus/quadratmuster.dart';
+import 'package:practice2/screens/bonus/reverse_number.dart';
+import 'package:practice2/screens/bonus/seconds_formatter.dart';
+import 'package:practice2/screens/bonus/text_in_wort.dart';
+import 'package:practice2/screens/bonus/textanalyse.dart';
+
 import 'package:practice2/util/colors.dart';
+import 'package:practice2/widgets/custom_elevated_btn.dart';
 
 class BonusPage extends StatelessWidget {
   const BonusPage({super.key});
@@ -12,6 +20,7 @@ class BonusPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -29,168 +38,57 @@ class BonusPage extends StatelessWidget {
               color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Center(
           child: Column(
             children: [
-              const SizedBox(
+              SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(Coloors.primaryColor)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const TextAnalyse()));
-                },
-                child: const SizedBox(
-                  width: 230,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Textanalyse',
-                        style: TextStyle(fontSize: 20, color: Coloors.text),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
+              CustomElevatedBtn(route: TextAnalyse(), text: 'Textanalyse'),
+              SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FizzBuzz()));
-                },
-                child: const SizedBox(
-                  width: 230,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'FizzBuzz',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
+              CustomElevatedBtn(route: FizzBuzz(), text: 'FizzBuzz'),
+              SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Quadratmuster()));
-                },
-                child: const SizedBox(
-                  width: 230,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Quadratmuster',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
+              CustomElevatedBtn(route: QuadratMuster(), text: 'Quadratmuster'),
+              SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const Summe()));
-                },
-                child: const SizedBox(
-                  width: 230,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Palindrom',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
+              CustomElevatedBtn(route: Palindrom(), text: 'Palindrom'),
+              SizedBox(
                 height: 20,
               ),
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(Colors.blue)),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Klammern()));
-                },
-                child: const SizedBox(
-                  width: 230,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Klammern',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Icon(
-                        Icons.check_circle_outline,
-                        color: Colors.grey,
-                      ),
-                    ],
-                  ),
-                ),
+              CustomElevatedBtn(route: Klammern(), text: 'Klammern'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomElevatedBtn(route: PrimeChecker(), text: 'Prime Checker'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomElevatedBtn(route: ReverseNumber(), text: 'Reverse Number'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomElevatedBtn(
+                  route: SecondsForm(), text: 'Seconds Formatter'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomElevatedBtn(route: Anagram(), text: 'Anagram'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomElevatedBtn(route: MultiAdvacend(), text: 'Advance Multi'),
+              SizedBox(
+                height: 20,
+              ),
+              CustomElevatedBtn(route: TextInWort(), text: 'Text zu Wort'),
+              SizedBox(
+                height: 50,
               ),
             ],
           ),

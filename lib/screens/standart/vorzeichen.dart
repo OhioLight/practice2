@@ -1,33 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/util/colors.dart';
+
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
-class FindChar extends StatefulWidget {
-  const FindChar({super.key});
+class Vorzeichen extends StatefulWidget {
+  const Vorzeichen({super.key});
 
   @override
-  State<FindChar> createState() => _FindCharState();
+  State<Vorzeichen> createState() => _VorzeichenState();
 }
 
-class _FindCharState extends State<FindChar> {
-  final TextEditingController stringController = TextEditingController();
-  final TextEditingController charController = TextEditingController();
-  bool isVorhanden = false;
+class _VorzeichenState extends State<Vorzeichen> {
+  final TextEditingController numberController = TextEditingController();
+  String result = '';
   bool isLoading = false;
-
-  bool buchstabenEnthalten(String text, String targetLetter) {
-    bool isDa = false;
-    for (int i = 0; i < text.length; i++) {
-      if (text[i].toLowerCase() == targetLetter.toLowerCase()) {
-        isDa = true;
-      }
-    }
-    return isDa;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -35,12 +25,12 @@ class _FindCharState extends State<FindChar> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Coloors.icon,
+            color: Coloors.white,
           ),
         ),
         backgroundColor: Coloors.primaryColor,
         title: const Text(
-          'Finde den Buchstaben',
+          'Vorzeichen',
           style: TextStyle(
               color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
@@ -55,7 +45,7 @@ class _FindCharState extends State<FindChar> {
             const SizedBox(
               width: 300,
               child: Text(
-                'Schreibe eine App, die zurückgibt, ob ein Buchstabe in einem String vorkommt. ',
+                'Schreibe eine App, die prüft, ob eine Zahl negativ, positiv oder 0 ist. Überlege, wie die Rückgabe aussehen könnte und welche verschiedenen Möglichkeiten es gibt.',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -67,56 +57,74 @@ class _FindCharState extends State<FindChar> {
               height: 50,
             ),
             SizedBox(
-              width: 300,
-              child: CustomStackTextField(
-                controller: stringController,
-                labelText: 'Text Eingeben',
-                hintFontSize: 10,
-                borderRadius: 25,
-                backgroundColor: Coloors.white,
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              width: 60,
+              width: 150,
               child: CustomStackTextField(
                 textAlign: TextAlign.center,
-                positionFromLeft: -110,
-                controller: charController,
-                labelText: 'Welcher Buchstabe soll dabei sein',
+                positionFromLeft: 10,
+                controller: numberController,
+                labelText: 'Zahl Eingeben',
                 hintFontSize: 10,
                 borderRadius: 25,
                 backgroundColor: Coloors.white,
               ),
             ),
+            const SizedBox(height: 10),
+            if (isLoading)
+              const CircularProgressIndicator(
+                color: Coloors.primaryColor,
+              )
+            else
+              (const SizedBox(
+                height: 36,
+              )),
             const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor:
                       MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
+                setState(() {
+                  isLoading = true;
+                });
                 await Future.delayed(const Duration(seconds: 3));
-                isVorhanden = buchstabenEnthalten(
-                    stringController.text, charController.text);
+                checkNumber();
+
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Ergebnis',
+                'Check',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
-            const SizedBox(height: 10),
-            if (isVorhanden)
-              (const Text('ist Vorhanden'))
-            else
-              (const Text('ist nicht Vorhanden')),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              result,
+              style: const TextStyle(fontSize: 20),
+            )
           ],
         ),
       ),
     );
+  }
+
+  void checkNumber() {
+    setState(() {
+      try {
+        int number = int.parse(numberController.text);
+        if (number > 0) {
+          result = 'Positive';
+        } else if (number < 0) {
+          result = 'Negative';
+        } else {
+          result = 'Zero';
+        }
+      } catch (e) {
+        result = 'Ungültige Eingabe';
+      }
+    });
   }
 }

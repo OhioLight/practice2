@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
+
 import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
-class Summe extends StatefulWidget {
-  const Summe({super.key});
+class CountVowel extends StatefulWidget {
+  const CountVowel({super.key});
 
   @override
-  State<Summe> createState() => _SummeState();
+  State<CountVowel> createState() => _CountVowelState();
 }
 
-class _SummeState extends State<Summe> {
-  TextEditingController firstNumberController = TextEditingController();
-  TextEditingController secondNumberController = TextEditingController();
-  int result = 0;
+class _CountVowelState extends State<CountVowel> {
+  final TextEditingController stringController = TextEditingController();
+  int count = 0;
   bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -27,9 +29,9 @@ class _SummeState extends State<Summe> {
             color: Coloors.icon,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Coloors.primaryColor,
         title: const Text(
-          'Summe',
+          'Vocale',
           style: TextStyle(
               color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
@@ -37,16 +39,23 @@ class _SummeState extends State<Summe> {
       body: Center(
         child: Column(
           children: [
-            const Text(
-              'Aufgabe',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(
-              width: 300,
-              child: Text(
-                'Schreibe eine App, die die Summe einer Liste von Zahlen anzeigt.',
-                style: TextStyle(fontSize: 16),
-                textAlign: TextAlign.center,
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Aufgabe',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(
+                    width: 300,
+                    child: Text(
+                      'Schreibe eine Funktion, die die Anzahl der Vokale in einem String zurückgibt.',
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
             ),
             const Divider(
@@ -56,25 +65,17 @@ class _SummeState extends State<Summe> {
               height: 50,
             ),
             SizedBox(
-              width: 100,
+              width: 300,
               child: CustomStackTextField(
-                controller: firstNumberController,
-                labelText: 'Erste Zahl',
+                controller: stringController,
+                labelText: 'Text Eingeben',
+                hintFontSize: 10,
                 borderRadius: 25,
-                backgroundColor: Coloors.text,
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            SizedBox(
-              width: 100,
-              child: CustomStackTextField(
-                controller: secondNumberController,
-                labelText: 'Zweite Zahl',
-                borderRadius: 25,
-                backgroundColor: Coloors.white,
-              ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -85,26 +86,27 @@ class _SummeState extends State<Summe> {
                 setState(() {
                   isLoading = true;
                 });
+                String text = stringController.text;
+                List<String> targetLetters = ['a', 'e', 'i', 'u', 'o'];
+
+                int vowelCount(String text, List<String> targetLetters) {
+                  for (int i = 0; i < text.length; i++) {
+                    if (targetLetters.contains(text[i].toLowerCase())) {
+                      count++;
+                    }
+                  }
+                  return count;
+                }
 
                 await Future.delayed(const Duration(seconds: 3));
+                count = vowelCount(text, targetLetters);
 
-                if (firstNumberController.text.isNotEmpty &&
-                    secondNumberController.text.isNotEmpty) {
-                  setState(
-                    () {
-                      result = int.parse(firstNumberController.text) +
-                          int.parse(secondNumberController.text);
-                    },
-                  );
-                  setState(
-                    () {
-                      isLoading = false;
-                    },
-                  );
-                }
+                setState(() {
+                  isLoading = false;
+                });
               },
               child: const Text(
-                'Ergebniss',
+                'Ergebnis',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
@@ -118,7 +120,7 @@ class _SummeState extends State<Summe> {
                 height: 36,
               )),
             const SizedBox(height: 10),
-            const Text('Das Ergebniss ist:'),
+            const Text('Die Anzahl der Vokale'),
             const SizedBox(
               height: 15,
             ),
@@ -134,7 +136,7 @@ class _SummeState extends State<Summe> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  '$result',
+                  '$count',
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ),

@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/util/colors.dart';
-
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
-class Vorzeichen extends StatefulWidget {
-  const Vorzeichen({super.key});
+class EinzigartigeElemente extends StatefulWidget {
+  const EinzigartigeElemente({super.key});
 
   @override
-  State<Vorzeichen> createState() => _VorzeichenState();
+  State<EinzigartigeElemente> createState() => _EinzigartigeElementeState();
 }
 
-class _VorzeichenState extends State<Vorzeichen> {
-  final TextEditingController numberController = TextEditingController();
-  String result = '';
+class _EinzigartigeElementeState extends State<EinzigartigeElemente> {
+  final TextEditingController textController = TextEditingController();
+
   bool isLoading = false;
+  List<String> chars = [];
+  void splitString() {
+    setState(() {
+      String inputString = textController.text;
+      chars = inputString.split('');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -24,12 +32,12 @@ class _VorzeichenState extends State<Vorzeichen> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Coloors.white,
+            color: Coloors.icon,
           ),
         ),
         backgroundColor: Coloors.primaryColor,
         title: const Text(
-          'Vorzeichen',
+          'Einzigartige Elemente',
           style: TextStyle(
               color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
@@ -44,7 +52,8 @@ class _VorzeichenState extends State<Vorzeichen> {
             const SizedBox(
               width: 300,
               child: Text(
-                'Schreibe eine App, die prüft, ob eine Zahl negativ, positiv oder 0 ist. Überlege, wie die Rückgabe aussehen könnte und welche verschiedenen Möglichkeiten es gibt.',
+                '''Schreibe eine Funktion, die aus einer Liste von Wörtern alle Wörter zurückgibt, die nur einmal in der Liste vorkommen.
+Beispiel: [“vor”, “auf”, “vor”, “unter”, “auf”, “in”] -> [“unter”, “in”]''',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -56,73 +65,55 @@ class _VorzeichenState extends State<Vorzeichen> {
               height: 50,
             ),
             SizedBox(
-              width: 150,
+              width: 300,
               child: CustomStackTextField(
-                textAlign: TextAlign.center,
-                positionFromLeft: 10,
-                controller: numberController,
-                labelText: 'Zahl Eingeben',
-                hintFontSize: 10,
+                controller: textController,
+                labelText: 'Text Eingeben',
                 borderRadius: 25,
                 backgroundColor: Coloors.white,
               ),
             ),
-            const SizedBox(height: 10),
-            if (isLoading)
-              const CircularProgressIndicator(
-                color: Coloors.primaryColor,
-              )
-            else
-              (const SizedBox(
-                height: 36,
-              )),
-            const SizedBox(height: 10),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               style: const ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(Colors.blue)),
+                  backgroundColor:
+                      MaterialStatePropertyAll(Coloors.primaryColor)),
               onPressed: () async {
                 setState(() {
                   isLoading = true;
                 });
+
                 await Future.delayed(const Duration(seconds: 3));
-                checkNumber();
+                splitString();
 
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Check',
+                'Ergebniss',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
+            if (isLoading)
+              const CircularProgressIndicator(
+                color: Coloors.primaryColor,
+              )
+            else
+              (const SizedBox(height: 36)),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Text(
-              result,
-              style: const TextStyle(fontSize: 20),
-            )
+            const Text('Aufgeteilte Zeichen:'),
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Text(chars.join(', ')),
+            ),
           ],
         ),
       ),
     );
-  }
-
-  void checkNumber() {
-    setState(() {
-      try {
-        int number = int.parse(numberController.text);
-        if (number > 0) {
-          result = 'Positive';
-        } else if (number < 0) {
-          result = 'Negative';
-        } else {
-          result = 'Zero';
-        }
-      } catch (e) {
-        result = 'Ungültige Eingabe';
-      }
-    });
   }
 }

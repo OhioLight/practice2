@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/util/colors.dart';
+
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
-class Aufteilung extends StatefulWidget {
-  const Aufteilung({super.key});
+class WortLeange extends StatefulWidget {
+  const WortLeange({super.key});
 
   @override
-  State<Aufteilung> createState() => _AufteilungState();
+  State<WortLeange> createState() => _WortLeangeState();
 }
 
-class _AufteilungState extends State<Aufteilung> {
-  final TextEditingController textController = TextEditingController();
-
+class _WortLeangeState extends State<WortLeange> {
+  final TextEditingController numberController = TextEditingController();
+  String result = '';
   bool isLoading = false;
-  List<String> chars = [];
-  void splitString() {
-    setState(() {
-      String inputString = textController.text;
-      chars = inputString.split('');
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -31,12 +25,12 @@ class _AufteilungState extends State<Aufteilung> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Coloors.icon,
+            color: Coloors.white,
           ),
         ),
         backgroundColor: Coloors.primaryColor,
         title: const Text(
-          'Aufteilung',
+          'Wort Länge',
           style: TextStyle(
               color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
@@ -51,7 +45,9 @@ class _AufteilungState extends State<Aufteilung> {
             const SizedBox(
               width: 300,
               child: Text(
-                'Schreibe eine App, die eine Zeichenkette in ihre einzelnen Zeichen aufteilt und diese zurückgibt.',
+                '''Schreibe eine Funktion, die für eine Liste aus Zeichenketten zurückgibt, 
+                wie viele Buchstaben jedes der Wörter hat. Der Rückgabewert soll eine Map sein, 
+                die aus den Wort-Wortlängen-Paaren besteht.''',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -63,17 +59,27 @@ class _AufteilungState extends State<Aufteilung> {
               height: 50,
             ),
             SizedBox(
-              width: 300,
+              width: 150,
               child: CustomStackTextField(
-                controller: textController,
-                labelText: 'Text Eingeben',
+                textAlign: TextAlign.center,
+                positionFromLeft: 10,
+                controller: numberController,
+                labelText: 'Zahl Eingeben',
+                hintFontSize: 10,
                 borderRadius: 25,
                 backgroundColor: Coloors.white,
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 10),
+            if (isLoading)
+              const CircularProgressIndicator(
+                color: Coloors.primaryColor,
+              )
+            else
+              (const SizedBox(
+                height: 36,
+              )),
+            const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor:
@@ -82,30 +88,45 @@ class _AufteilungState extends State<Aufteilung> {
                 setState(() {
                   isLoading = true;
                 });
-
                 await Future.delayed(const Duration(seconds: 3));
-                splitString();
+                checkNumber();
 
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Ergebniss',
+                'Check',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            const Text('Aufgeteilte Zeichen:'),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Text(chars.join(', ')),
-            ),
+            Text(
+              result,
+              style: const TextStyle(fontSize: 20),
+            )
           ],
         ),
       ),
     );
+  }
+
+  void checkNumber() {
+    setState(() {
+      try {
+        int number = int.parse(numberController.text);
+        if (number > 0) {
+          result = 'Positive';
+        } else if (number < 0) {
+          result = 'Negative';
+        } else {
+          result = 'Zero';
+        }
+      } catch (e) {
+        result = 'Ungültige Eingabe';
+      }
+    });
   }
 }

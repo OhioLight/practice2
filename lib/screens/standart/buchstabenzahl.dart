@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:practice2/util/colors.dart';
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
-class Durchschnitt extends StatefulWidget {
-  const Durchschnitt({super.key});
+class BuchstabenZahl extends StatefulWidget {
+  const BuchstabenZahl({super.key});
 
   @override
-  State<Durchschnitt> createState() => _DurchschnittState();
+  State<BuchstabenZahl> createState() => _BuchstabenZahlState();
 }
 
-class _DurchschnittState extends State<Durchschnitt> {
-  final TextEditingController numbersController = TextEditingController();
-  double average = 0.0;
+class _BuchstabenZahlState extends State<BuchstabenZahl> {
+  final TextEditingController textController = TextEditingController();
+
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -28,8 +29,9 @@ class _DurchschnittState extends State<Durchschnitt> {
         ),
         backgroundColor: Coloors.primaryColor,
         title: const Text(
-          'Durchschnitt',
-          style: TextStyle(color: Coloors.text),
+          'Buchstaben Zahl',
+          style: TextStyle(
+              color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
       ),
       body: Center(
@@ -42,7 +44,7 @@ class _DurchschnittState extends State<Durchschnitt> {
             const SizedBox(
               width: 300,
               child: Text(
-                'Schreibe eine App, die den Durchschnitt einer Liste von Zahlen berechnet. Der Durchschnitt kann auch eine Kommazahl sein (Bsp.: [2, 3] -> 2.5). ',
+                'Schreibe eine App, die für eine Liste aus Zeichenketten zurückgibt, wie viele Zeichen jede der Zeichenketten hat. Der Rückgabewert soll jede Zeichenkette und die Anzahl der Zeichen darin enthalten. (Bsp: “David” -> 5, “Angi” -> 4 etc.)',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -56,15 +58,15 @@ class _DurchschnittState extends State<Durchschnitt> {
             SizedBox(
               width: 300,
               child: CustomStackTextField(
-                controller: numbersController,
-                labelText: 'Zahlen Eingeben',
-                hintText: 'Zahlen mit Kommatas trennen',
-                hintFontSize: 10,
+                controller: textController,
+                labelText: 'Text Eingeben',
                 borderRadius: 25,
                 backgroundColor: Coloors.white,
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor:
@@ -75,7 +77,7 @@ class _DurchschnittState extends State<Durchschnitt> {
                 });
 
                 await Future.delayed(const Duration(seconds: 3));
-                calculateAverage();
+                calculateStringLengths();
                 setState(() {
                   isLoading = false;
                 });
@@ -85,52 +87,37 @@ class _DurchschnittState extends State<Durchschnitt> {
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
-            const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
                 color: Coloors.primaryColor,
               )
             else
-              (const SizedBox(
-                height: 36,
-              )),
-            const SizedBox(height: 10),
-            const Text('Der Durchschnitt ist:'),
+              (const SizedBox(height: 36)),
             const SizedBox(
-              height: 15,
+              height: 20,
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Coloors.lightBlue,
-                border: Border.all(
-                    style: BorderStyle.solid,
-                    color: Coloors.primaryColor,
-                    width: 3),
-                borderRadius: BorderRadius.circular(25),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text(
-                  average.toStringAsFixed(2),
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+            const Text('Länge der Einzelnen Texte:'),
+            if (resultStrings.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  children:
+                      resultStrings.map((result) => Text(result)).toList(),
                 ),
               ),
-            )
           ],
         ),
       ),
     );
   }
 
-  void calculateAverage() {
-    final String numbersText = numbersController.text;
-    final List<String> numbersStringList = numbersText.split(',');
-    final List<double> numbersList = numbersStringList
-        .map((numberString) => double.tryParse(numberString.trim()) ?? 0.0)
-        .toList();
-
-    double sum = numbersList.reduce((value, element) => value + element);
-    average = sum / numbersList.length;
+  List<String> resultStrings = [];
+  void calculateStringLengths() {
+    String inputText = textController.text;
+    List<String> inputList = inputText.split(',');
+    resultStrings = inputList.map((str) {
+      String trimmedStr = str.trim().replaceAll(' ', '');
+      return '$trimmedStr -> ${trimmedStr.length}';
+    }).toList();
   }
 }

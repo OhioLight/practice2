@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:practice2/util/colors.dart';
+
 import 'package:practice2/widgets/custom_stack_textfield.dart';
 
-class BuchstabenZahl extends StatefulWidget {
-  const BuchstabenZahl({super.key});
+class ZeichenKette extends StatefulWidget {
+  const ZeichenKette({super.key});
 
   @override
-  State<BuchstabenZahl> createState() => _BuchstabenZahlState();
+  State<ZeichenKette> createState() => _ZeichenKetteState();
 }
 
-class _BuchstabenZahlState extends State<BuchstabenZahl> {
-  final TextEditingController textController = TextEditingController();
-
+class _ZeichenKetteState extends State<ZeichenKette> {
+  final TextEditingController numberController = TextEditingController();
+  String result = '';
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Coloors.white,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -23,12 +25,12 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
           },
           icon: const Icon(
             Icons.arrow_back_ios_new,
-            color: Coloors.icon,
+            color: Coloors.white,
           ),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Coloors.primaryColor,
         title: const Text(
-          'Buchstaben Zahl',
+          'Zeichenkette',
           style: TextStyle(
               color: Coloors.text, fontWeight: FontWeight.bold, fontSize: 24),
         ),
@@ -43,7 +45,8 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
             const SizedBox(
               width: 300,
               child: Text(
-                'Schreibe eine App, die für eine Liste aus Zeichenketten zurückgibt, wie viele Zeichen jede der Zeichenketten hat. Der Rückgabewert soll jede Zeichenkette und die Anzahl der Zeichen darin enthalten. (Bsp: “David” -> 5, “Angi” -> 4 etc.)',
+                '''Schreibe eine Funktion, die eine Liste von Zeichenketten entgegennimmt 
+                und sie zu einer einzigen Zeichenkette zusammenfügt und zurückgibt.''',
                 style: TextStyle(fontSize: 16),
                 textAlign: TextAlign.center,
               ),
@@ -55,17 +58,27 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
               height: 50,
             ),
             SizedBox(
-              width: 300,
+              width: 150,
               child: CustomStackTextField(
-                controller: textController,
-                labelText: 'Text Eingeben',
+                textAlign: TextAlign.center,
+                positionFromLeft: 10,
+                controller: numberController,
+                labelText: 'Zahl Eingeben',
+                hintFontSize: 10,
                 borderRadius: 25,
                 backgroundColor: Coloors.white,
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            const SizedBox(height: 10),
+            if (isLoading)
+              const CircularProgressIndicator(
+                color: Coloors.primaryColor,
+              )
+            else
+              (const SizedBox(
+                height: 36,
+              )),
+            const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor:
@@ -74,43 +87,45 @@ class _BuchstabenZahlState extends State<BuchstabenZahl> {
                 setState(() {
                   isLoading = true;
                 });
-
                 await Future.delayed(const Duration(seconds: 3));
-                calculateStringLengths();
+                checkNumber();
+
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Ergebniss',
+                'Check',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
-            const Text('Länge der Einzelnen Texte:'),
-            if (resultStrings.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.all(30.0),
-                child: Column(
-                  children:
-                      resultStrings.map((result) => Text(result)).toList(),
-                ),
-              ),
+            Text(
+              result,
+              style: const TextStyle(fontSize: 20),
+            )
           ],
         ),
       ),
     );
   }
 
-  List<String> resultStrings = [];
-  void calculateStringLengths() {
-    String inputText = textController.text;
-    List<String> inputList = inputText.split(',');
-    resultStrings = inputList.map((str) {
-      String trimmedStr = str.trim().replaceAll(' ', '');
-      return '$trimmedStr -> ${trimmedStr.length}';
-    }).toList();
+  void checkNumber() {
+    setState(() {
+      try {
+        int number = int.parse(numberController.text);
+        if (number > 0) {
+          result = 'Positive';
+        } else if (number < 0) {
+          result = 'Negative';
+        } else {
+          result = 'Zero';
+        }
+      } catch (e) {
+        result = 'Ungültige Eingabe';
+      }
+    });
   }
 }

@@ -10,9 +10,6 @@ class Summe extends StatefulWidget {
 }
 
 class _SummeState extends State<Summe> {
-  TextEditingController firstNumberController = TextEditingController();
-  TextEditingController secondNumberController = TextEditingController();
-  int result = 0;
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -56,26 +53,17 @@ class _SummeState extends State<Summe> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
-              width: 100,
+            const SizedBox(
+              width: 300,
+
+              //wenn mehr als ein CustomStackTextField einfach die sizedBox mit dem textfield kopieren
               child: CustomStackTextField(
-                controller: firstNumberController,
-                labelText: 'Erste Zahl',
-                borderRadius: 25,
-                backgroundColor: Coloors.text,
+                labelText: 'Hier Eingabe text ändern',
+                backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            SizedBox(
-              width: 100,
-              child: CustomStackTextField(
-                controller: secondNumberController,
-                labelText: 'Zweite Zahl',
-                borderRadius: 25,
-                backgroundColor: Coloors.white,
-              ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -87,25 +75,14 @@ class _SummeState extends State<Summe> {
                   isLoading = true;
                 });
 
-                await Future.delayed(const Duration(seconds: 3));
+                // hier bitte funktion einfügen
 
-                if (firstNumberController.text.isNotEmpty &&
-                    secondNumberController.text.isNotEmpty) {
-                  setState(
-                    () {
-                      result = int.parse(firstNumberController.text) +
-                          int.parse(secondNumberController.text);
-                    },
-                  );
-                  setState(
-                    () {
-                      isLoading = false;
-                    },
-                  );
-                }
+                setState(() {
+                  isLoading = false;
+                });
               },
               child: const Text(
-                'Ergebniss',
+                'Ergebnis',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
@@ -119,7 +96,7 @@ class _SummeState extends State<Summe> {
                 height: 36,
               )),
             const SizedBox(height: 10),
-            const Text('Das Ergebniss ist:'),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
             const SizedBox(
               height: 15,
             ),
@@ -132,12 +109,12 @@ class _SummeState extends State<Summe> {
                     width: 3),
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Text(
-                  '$result',
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ),
             )

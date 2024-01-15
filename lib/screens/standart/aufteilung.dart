@@ -10,16 +10,7 @@ class Aufteilung extends StatefulWidget {
 }
 
 class _AufteilungState extends State<Aufteilung> {
-  final TextEditingController textController = TextEditingController();
-
   bool isLoading = false;
-  List<String> chars = [];
-  void splitString() {
-    setState(() {
-      String inputString = textController.text;
-      chars = inputString.split('');
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,18 +54,17 @@ class _AufteilungState extends State<Aufteilung> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 300,
               child: CustomStackTextField(
-                controller: textController,
-                labelText: 'Text Eingeben',
-                borderRadius: 25,
+                labelText: 'Hier Eingabe text ändern',
                 backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
               height: 20,
             ),
+            const SizedBox(height: 10),
             ElevatedButton(
               style: const ButtonStyle(
                   backgroundColor:
@@ -84,32 +74,49 @@ class _AufteilungState extends State<Aufteilung> {
                   isLoading = true;
                 });
 
-                await Future.delayed(const Duration(seconds: 3));
-                splitString();
+                // hier bitte funktion einfügen
 
                 setState(() {
                   isLoading = false;
                 });
               },
               child: const Text(
-                'Ergebniss',
+                'Ergebnis',
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
+            const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
                 color: Coloors.primaryColor,
               )
             else
-              (const SizedBox(height: 36)),
+              (const SizedBox(
+                height: 36,
+              )),
+            const SizedBox(height: 10),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
             const SizedBox(
-              height: 20,
+              height: 15,
             ),
-            const Text('Aufgeteilte Zeichen:'),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: Text(chars.join(', ')),
-            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Coloors.lightBlue,
+                border: Border.all(
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
           ],
         ),
       ),

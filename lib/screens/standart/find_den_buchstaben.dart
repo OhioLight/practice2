@@ -10,20 +10,7 @@ class FindChar extends StatefulWidget {
 }
 
 class _FindCharState extends State<FindChar> {
-  final TextEditingController stringController = TextEditingController();
-  final TextEditingController charController = TextEditingController();
-  bool isVorhanden = false;
   bool isLoading = false;
-
-  bool buchstabenEnthalten(String text, String targetLetter) {
-    bool isDa = false;
-    for (int i = 0; i < text.length; i++) {
-      if (text[i].toLowerCase() == targetLetter.toLowerCase()) {
-        isDa = true;
-      }
-    }
-    return isDa;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,30 +54,17 @@ class _FindCharState extends State<FindChar> {
             const SizedBox(
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               width: 300,
+
+              //wenn mehr als ein CustomStackTextField einfach die sizedBox mit dem textfield kopieren
               child: CustomStackTextField(
-                controller: stringController,
-                labelText: 'Text Eingeben',
-                hintFontSize: 10,
-                borderRadius: 25,
+                labelText: 'Hier Eingabe text ändern',
                 backgroundColor: Coloors.white,
               ),
             ),
             const SizedBox(
               height: 20,
-            ),
-            SizedBox(
-              width: 60,
-              child: CustomStackTextField(
-                textAlign: TextAlign.center,
-                positionFromLeft: -110,
-                controller: charController,
-                labelText: 'Welcher Buchstabe soll dabei sein',
-                hintFontSize: 10,
-                borderRadius: 25,
-                backgroundColor: Coloors.white,
-              ),
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -101,9 +75,9 @@ class _FindCharState extends State<FindChar> {
                 setState(() {
                   isLoading = true;
                 });
-                await Future.delayed(const Duration(seconds: 3));
-                isVorhanden = buchstabenEnthalten(
-                    stringController.text, charController.text);
+
+                // hier bitte funktion einfügen
+
                 setState(() {
                   isLoading = false;
                 });
@@ -113,17 +87,38 @@ class _FindCharState extends State<FindChar> {
                 style: TextStyle(fontSize: 20, color: Coloors.text),
               ),
             ),
+            const SizedBox(height: 10),
             if (isLoading)
               const CircularProgressIndicator(
                 color: Coloors.primaryColor,
               )
             else
-              (const SizedBox(height: 36)),
+              (const SizedBox(
+                height: 36,
+              )),
             const SizedBox(height: 10),
-            if (isVorhanden)
-              (const Text('ist Vorhanden'))
-            else
-              (const Text('ist nicht Vorhanden')),
+            const Text('hier trägst du ein was du ausgegeben bekommst'),
+            const SizedBox(
+              height: 15,
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Coloors.lightBlue,
+                border: Border.all(
+                    style: BorderStyle.solid,
+                    color: Coloors.primaryColor,
+                    width: 3),
+                borderRadius: BorderRadius.circular(25),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: Text(
+                  //hier die lösung eintragen
+                  '',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+            )
           ],
         ),
       ),

@@ -19,7 +19,7 @@ class CustomStackTextField extends StatelessWidget {
     this.labelText = '',
     this.enabledBorderColor = Colors.grey,
     this.focusedBorderColor = Colors.black,
-    this.borderRadius = 0,
+    this.borderRadius = 25,
     this.hintTextColor = Colors.grey,
     this.positionFromLeft = 40,
     this.hintFontSize = 8,

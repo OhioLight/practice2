@@ -11,8 +11,6 @@ class ReverseNumber extends StatefulWidget {
 }
 
 class _ReverseNumberState extends State<ReverseNumber> {
-  final TextEditingController stringController = TextEditingController();
-  int count = 0;
   bool isLoading = false;
 
   @override
@@ -67,13 +65,10 @@ Hinweis: Verwende den Modulo-Operator.''',
               const SizedBox(
                 height: 50,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 300,
                 child: CustomStackTextField(
-                  controller: stringController,
-                  labelText: 'Text Eingeben',
-                  hintFontSize: 10,
-                  borderRadius: 25,
+                  labelText: 'Hier Eingabe text ändern',
                   backgroundColor: Coloors.white,
                 ),
               ),
@@ -89,20 +84,8 @@ Hinweis: Verwende den Modulo-Operator.''',
                   setState(() {
                     isLoading = true;
                   });
-                  String text = stringController.text;
-                  List<String> targetLetters = ['a', 'e', 'i', 'u', 'o'];
 
-                  int vowelCount(String text, List<String> targetLetters) {
-                    for (int i = 0; i < text.length; i++) {
-                      if (targetLetters.contains(text[i].toLowerCase())) {
-                        count++;
-                      }
-                    }
-                    return count;
-                  }
-
-                  await Future.delayed(const Duration(seconds: 3));
-                  count = vowelCount(text, targetLetters);
+                  // hier bitte funktion einfügen
 
                   setState(() {
                     isLoading = false;
@@ -123,7 +106,7 @@ Hinweis: Verwende den Modulo-Operator.''',
                   height: 36,
                 )),
               const SizedBox(height: 10),
-              const Text('Die Anzahl der Vokale'),
+              const Text('hier trägst du ein was du ausgegeben bekommst'),
               const SizedBox(
                 height: 15,
               ),
@@ -136,12 +119,12 @@ Hinweis: Verwende den Modulo-Operator.''',
                       width: 3),
                   borderRadius: BorderRadius.circular(25),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.0),
                   child: Text(
-                    '$count',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
+                    //hier die lösung eintragen
+                    '',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
               )
